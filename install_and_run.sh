@@ -7,8 +7,8 @@ sudo apt install -y python3 python3-pip python3-venv git
 
 # 克隆 GitHub 仓库
 echo "克隆 GitHub 仓库..."
-git clone https://github.com/your_username/netcup-vserver-manager.git
-cd netcup-vserver-manager
+git clone https://github.com/hujixiang0402/reset_vserver.git
+cd reset_vserver
 
 # 创建虚拟环境并激活
 echo "创建虚拟环境..."
