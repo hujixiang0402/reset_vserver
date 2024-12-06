@@ -3,7 +3,7 @@
 # 更新系统并安装必要的工具
 echo "更新系统并安装必要的工具..."
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y python3 python3-pip python3-venv git
+sudo apt install -y python3 python3-pip python3-venv git wget
 
 # 克隆 GitHub 仓库
 echo "克隆 GitHub 仓库..."
@@ -15,7 +15,7 @@ echo "创建虚拟环境..."
 python3 -m venv venv
 source venv/bin/activate
 
-# 安装依赖
+# 安装 Python 依赖
 echo "安装 Python 依赖..."
 pip install -r requirements.txt
 
@@ -29,8 +29,8 @@ echo "LOGIN_NAME=\"$login_name\"" > config.sh
 echo "PASSWORD=\"$password\"" >> config.sh
 
 # 设置文件权限
-chmod +x interactive_vserver_manager.py
+chmod +x vserver_manager.py
 
 # 运行脚本
 echo "运行 vServer 管理器..."
-python interactive_vserver_manager.py
+python vserver_manager.py
