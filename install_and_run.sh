@@ -28,9 +28,15 @@ echo "登录凭据保存中..."
 echo "LOGIN_NAME=\"$login_name\"" > config.sh
 echo "PASSWORD=\"$password\"" >> config.sh
 
-# 设置文件权限
+# 设置配置文件权限
+chmod +x config.sh
+
+# 设置 Python 脚本权限
 chmod +x vserver_manager.py
 
 # 运行脚本
 echo "运行 vServer 管理器..."
 python vserver_manager.py
+
+# 退出虚拟环境
+deactivate
