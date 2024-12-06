@@ -1,9 +1,30 @@
 from netcup_webservice import NetcupWebservice
 import sys
 
-# 替换为你的 Netcup 凭据
-LOGIN_NAME = "your_login"  # 你的登录名
-PASSWORD = "your_password"  # 你的 API 密码
+def load_config():
+    """从 config.sh 文件加载 Netcup 凭据"""
+    config = {}
+    try:
+        with open("config.sh", "r") as f:
+            for line in f.readlines():
+                # 解析每行的配置
+                if "=" in line:
+                    key, value = line.strip().split("=", 1)
+                    config[key.strip()] = value.strip().strip('"')  # 移除空格和引号
+        return config
+    except Exception as e:
+        print(f"无法加载配置文件: {e}")
+        sys.exit(1)
+
+# 从 config.sh 文件加载凭据
+config = load_config()
+LOGIN_NAME = config.get("LOGIN_NAME")
+PASSWORD = config.get("PASSWORD")
+
+# 检查是否成功加载凭据
+if not LOGIN_NAME or not PASSWORD:
+    print("请确保 config.sh 文件中包含有效的 LOGIN_NAME 和 PASSWORD。")
+    sys.exit(1)
 
 # 初始化客户端
 client = NetcupWebservice(loginname=LOGIN_NAME, password=PASSWORD)
